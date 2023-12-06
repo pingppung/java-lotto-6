@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoFactory {
@@ -14,4 +15,12 @@ public class LottoFactory {
         return new Lotto(numbers);
     }
 
+    public List<Lotto> generateLottos(int numberOfLottos) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int count = 0; count < numberOfLottos; count++) {
+            Lotto lotto = createLotto();
+            lottos.add(lotto);
+        }
+        return lottos;
+    }
 }
