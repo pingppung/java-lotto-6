@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.constants.LottoConstants.MAX_NUMBER;
 import static lotto.constants.LottoConstants.MIN_NUMBER;
+import static lotto.constants.LottoConstants.NUMBERS_PER_GAME;
 
 import java.util.List;
 
@@ -18,4 +19,9 @@ public class LottoNumberValidator {
         }
     }
 
+    public void validateNumbersCount(List<Integer> numbers) {
+        if (numbers.size() != NUMBERS_PER_GAME.getValue()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개이여야 합니다.");
+        }
+    }
 }
