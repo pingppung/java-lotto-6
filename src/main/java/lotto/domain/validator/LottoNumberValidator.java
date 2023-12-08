@@ -7,6 +7,7 @@ import static lotto.constants.LottoConstants.NUMBERS_PER_GAME;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.Lotto;
 
 public class LottoNumberValidator {
 
@@ -31,6 +32,13 @@ public class LottoNumberValidator {
     public static void validateDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
+        }
+    }
+
+    public static void validateDuplicateBonus(Lotto numbers, int bonusNumber) {
+        List<Integer> winningNumbers = numbers.getNumbers();
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
         }
     }
