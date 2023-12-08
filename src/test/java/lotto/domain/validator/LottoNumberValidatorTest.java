@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -53,6 +54,24 @@ public class LottoNumberValidatorTest {
     void invalidateDuplicateNumbers() {
         List<Integer> invalideNumbers = List.of(1, 2, 3, 3, 4, 5);
         assertThatThrownBy(() -> LottoNumberValidator.validateDuplicateNumbers(invalideNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 중복된 숫자가 존재합니다.");
+    }
+
+    @DisplayName("보너스번호가_로또번호와_중복되는_수가_없는_경우")
+    @Test
+    void validateDuplicateBonus() {
+        Lotto lotto_numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonus = 7;
+        assertDoesNotThrow(() -> LottoNumberValidator.validateDuplicateBonus(lotto_numbers, bonus));
+    }
+
+    @DisplayName("보너스번호가_로또번호와_중복되는_수가_존재하는_경우")
+    @Test
+    void invalidateDuplicateBonus() {
+        Lotto lotto_numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonus = 5;
+        assertThatThrownBy(() -> LottoNumberValidator.validateDuplicateBonus(lotto_numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 중복된 숫자가 존재합니다.");
     }
