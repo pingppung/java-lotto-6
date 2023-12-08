@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.WinningLotto;
+import lotto.utils.InputHandler;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,7 +18,7 @@ public class LottoGameController {
     }
 
     public void start() {
-        int purchaseAmount = getLottoPurchaseAmount();
+        int purchaseAmount = InputHandler.retryInputOnInvalid(this::getLottoPurchaseAmount);
 
         LottoPurchase lottoPurchase = new LottoPurchase(purchaseAmount);
         int purchaseCount = lottoPurchase.calculateLottoCount();
@@ -30,13 +31,17 @@ public class LottoGameController {
     }
 
     private WinningLotto getWinningLotto() {
-        Lotto winningNumber = generateWinningNumber();
-        int bonusNumber = inputView.getBonusNumber();
+        Lotto winningNumber = InputHandler.retryInputOnInvalid(this::getWinningNumber);
+        int bonusNumber = InputHandler.retryInputOnInvalid(this::getBonusNumber);
         return new WinningLotto(winningNumber, bonusNumber);
     }
 
-    private Lotto generateWinningNumber() {
+    private Lotto getWinningNumber() {
         List<Integer> numbers = inputView.getWinningNumber();
         return new Lotto(numbers);
+    }
+
+    private int getBonusNumber() {
+        return inputView.getBonusNumber();
     }
 }
