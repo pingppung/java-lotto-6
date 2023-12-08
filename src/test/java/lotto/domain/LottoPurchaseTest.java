@@ -11,7 +11,7 @@ public class LottoPurchaseTest {
     @Test
     void calculateLottoCount() {
         int testMoney = 100000;
-        LottoPurchase lottoPurchase = new LottoPurchase(String.valueOf(testMoney));
+        LottoPurchase lottoPurchase = new LottoPurchase(testMoney);
         int calculateCount = lottoPurchase.calculateLottoCount(testMoney);
         assertThat(testMoney / 1000).isEqualTo(calculateCount);
     }
