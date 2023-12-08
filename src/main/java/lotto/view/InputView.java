@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.domain.validator.PurchaseAmountValidator;
 import lotto.utils.InputValidator;
 import lotto.utils.Parser;
 
@@ -12,7 +13,9 @@ public class InputView {
 
     public int getPurchaseAmount() {
         String input = inputWithPrompt(PURCHASE_AMOUNT_PROMPT);
-        return InputValidator.validateNonNumeric(input);
+        int amount = InputValidator.validateNonNumeric(input);
+        PurchaseAmountValidator.validatePositiveNumber(amount);
+        return amount;
     }
 
     public List<Integer> getWinningNumber() {
