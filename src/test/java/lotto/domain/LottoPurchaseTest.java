@@ -12,7 +12,7 @@ public class LottoPurchaseTest {
     void calculateLottoCount() {
         int testMoney = 100000;
         LottoPurchase lottoPurchase = new LottoPurchase(testMoney);
-        int calculateCount = lottoPurchase.calculateLottoCount(testMoney);
+        int calculateCount = lottoPurchase.calculateLottoCount();
         assertThat(testMoney / 1000).isEqualTo(calculateCount);
     }
 }
