@@ -4,10 +4,10 @@ import static lotto.constants.LottoConstants.PURCHASE_PRICE;
 
 import lotto.domain.validator.PurchaseAmountValidator;
 
-public class LottoPurchase {
+public class LottoCountCalculator {
     private final int purchaseAmount;
 
-    public LottoPurchase(int money) {
+    public LottoCountCalculator(int money) {
         validate(money);
         this.purchaseAmount = money;
     }

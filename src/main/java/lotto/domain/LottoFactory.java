@@ -7,8 +7,8 @@ public class LottoFactory {
     private final LottoNumberGenerator lottoNumberGenerator;
     private static final int INITIAL_VALUE = 0;
 
-    public LottoFactory(LottoNumberGenerator lottoNumberGenerator) {
-        this.lottoNumberGenerator = lottoNumberGenerator;
+    public LottoFactory() {
+        this.lottoNumberGenerator = new LottoNumberGenerator();
     }
 
     private Lotto createLotto() {
