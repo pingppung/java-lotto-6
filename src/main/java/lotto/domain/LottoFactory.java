@@ -5,6 +5,7 @@ import java.util.List;
 
 public class LottoFactory {
     private final LottoNumberGenerator lottoNumberGenerator;
+    private static final int INITIAL_VALUE = 0;
 
     public LottoFactory(LottoNumberGenerator lottoNumberGenerator) {
         this.lottoNumberGenerator = lottoNumberGenerator;
@@ -17,7 +18,7 @@ public class LottoFactory {
 
     public List<Lotto> generateLottos(int numberOfLottos) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int count = 0; count < numberOfLottos; count++) {
+        for (int count = INITIAL_VALUE; count < numberOfLottos; count++) {
             Lotto lotto = createLotto();
             lottos.add(lotto);
         }
