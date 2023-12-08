@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.validator.LottoNumberValidator.validateDuplicateBonus;
+import lotto.domain.validator.LottoNumberValidator;
 
 public class WinningLotto {
     private final Lotto winningNumbers;
@@ -13,6 +13,6 @@ public class WinningLotto {
     }
 
     private void validate() {
-        validateDuplicateBonus(winningNumbers, bonusNumber);
+        LottoNumberValidator.validateDuplicateBonus(winningNumbers, bonusNumber);
     }
 }

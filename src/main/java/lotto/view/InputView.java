@@ -17,8 +17,7 @@ public class InputView {
 
     public List<Integer> getWinningNumber() {
         String input = inputWithPrompt(WINNING_NUMBER_PROMPT);
-        List<String> parserInput = Parser.parseWinnginNumbers(input);
-        return InputValidator.validateNonNumericWinningNumbers(parserInput);
+        return Parser.parseWinnginNumbers(input);
     }
 
     public int getBonusNumber() {
