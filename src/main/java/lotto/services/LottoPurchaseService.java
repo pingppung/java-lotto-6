@@ -14,7 +14,7 @@ public class LottoPurchaseService {
         this.lottoCountCalculator = new LottoCountCalculator(purchaseAmount);
     }
 
-    public List<Lotto> purchaseLottos(int purchaseAmount) {
+    public List<Lotto> purchaseLottos() {
         int numberOfLottos = calculateLottoCount();
         return lottoFactory.generateLottos(numberOfLottos);
     }

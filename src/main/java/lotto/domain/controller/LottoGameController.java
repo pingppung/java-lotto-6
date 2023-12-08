@@ -2,8 +2,8 @@ package lotto.domain.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoCountCalculator;
 import lotto.domain.WinningLotto;
+import lotto.services.LottoPurchaseService;
 import lotto.utils.InputHandler;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,8 +20,8 @@ public class LottoGameController {
     public void start() {
         int purchaseAmount = InputHandler.retryInputOnInvalid(this::getLottoPurchaseAmount);
 
-        LottoCountCalculator lottoCountCalculator = new LottoCountCalculator(purchaseAmount);
-        int purchaseCount = lottoCountCalculator.calculateLottoCount();
+        LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(purchaseAmount);
+        List<Lotto> lottos = lottoPurchaseService.purchaseLottos();
 
         WinningLotto winningLotto = getWinningLotto();
     }
