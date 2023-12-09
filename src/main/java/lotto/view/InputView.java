@@ -16,6 +16,7 @@ public class InputView {
         String input = inputWithPrompt(PURCHASE_AMOUNT_PROMPT);
         int amount = InputValidator.validateNonNumeric(input);
         PurchaseAmountValidator.validatePositiveNumber(amount);
+        PurchaseAmountValidator.validateNotDivisibleByThousand(amount);
         return amount;
     }
 
