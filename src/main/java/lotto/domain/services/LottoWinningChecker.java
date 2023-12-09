@@ -30,9 +30,7 @@ public class LottoWinningChecker {
             boolean hasBonusNumber = isBonusNumberMatched(lotto, winningLotto.getBonusNumber());
             LottoRank rank = calculateRank(matchingCount, hasBonusNumber);
 
-            if (rank != null) {
-                rankCount.put(rank, rankCount.get(rank) + 1);
-            }
+            increaseCountForRank(rank);
         }
     }
 
@@ -54,5 +52,11 @@ public class LottoWinningChecker {
             }
         }
         return null;
+    }
+
+    protected void increaseCountForRank(LottoRank rank) {
+        if (rank != null) {
+            rankCount.put(rank, rankCount.get(rank) + 1);
+        }
     }
 }
