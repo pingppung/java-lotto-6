@@ -34,4 +34,13 @@ public class LottoWinningChecker {
         List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
         return purchasedNumbers.contains(bonusNumber);
     }
+
+    private LottoRank calculateRank(int matchingCount, boolean hasBonusNumber) {
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.getMatchCount() == matchingCount && rank.isBonus() == hasBonusNumber) {
+                return rank;
+            }
+        }
+        return null;
+    }
 }
