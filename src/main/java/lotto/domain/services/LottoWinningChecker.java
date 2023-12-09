@@ -29,4 +29,9 @@ public class LottoWinningChecker {
         List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
         return (int) purchasedNumbers.stream().filter(winningNumbers::contains).count();
     }
+
+    private boolean isBonusNumberMatched(Lotto purchasedLotto, int bonusNumber) {
+        List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
+        return purchasedNumbers.contains(bonusNumber);
+    }
 }
