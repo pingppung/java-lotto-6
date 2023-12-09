@@ -20,4 +20,9 @@ public class EarningRateCalculator {
         return totalRankAmount.divide(BigDecimal.valueOf(purchaseAmount), ROUNDING_SCALE, RoundingMode.DOWN);
     }
 
+    private static BigDecimal calculateEarningRateInPercentage(BigDecimal totalRankAmount, int purchaseAmount) {
+        BigDecimal earningRate = calculateEarningRate(totalRankAmount, purchaseAmount);
+        return earningRate.multiply(BigDecimal.valueOf(100));
+    }
+
 }
