@@ -1,4 +1,4 @@
-package lotto.domain.controller;
+package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -24,6 +24,7 @@ public class LottoGameController {
         List<Lotto> lottos = lottoPurchaseService.purchaseLottos();
 
         WinningLotto winningLotto = getWinningLotto();
+        System.out.println(winningLotto);
     }
 
     private int getLottoPurchaseAmount() {
