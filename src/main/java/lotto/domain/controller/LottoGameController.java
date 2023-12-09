@@ -32,8 +32,10 @@ public class LottoGameController {
 
     private WinningLotto getWinningLotto() {
         Lotto winningNumber = InputHandler.retryInputOnInvalid(this::getWinningNumber);
-        int bonusNumber = InputHandler.retryInputOnInvalid(this::getBonusNumber);
-        return new WinningLotto(winningNumber, bonusNumber);
+        return InputHandler.retryInputOnInvalid(() -> {
+            int bonusNumber = InputHandler.retryInputOnInvalid(this::getBonusNumber);
+            return new WinningLotto(winningNumber, bonusNumber);
+        });
     }
 
     private Lotto getWinningNumber() {

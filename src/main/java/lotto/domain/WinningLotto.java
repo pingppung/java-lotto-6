@@ -7,9 +7,9 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(Lotto winningNumbers, int bonusNumber) {
-        validate();
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+        validate();
     }
 
     private void validate() {

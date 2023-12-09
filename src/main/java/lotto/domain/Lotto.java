@@ -15,7 +15,6 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoNumberValidator.validateNumbersInRange(numbers);
         LottoNumberValidator.validateNumbersCount(numbers);
         LottoNumberValidator.validateDuplicateNumbers(numbers);
     }
