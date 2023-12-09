@@ -2,8 +2,8 @@ package lotto.services;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoCountCalculator;
 import lotto.domain.LottoFactory;
+import lotto.domain.services.LottoCountCalculator;
 
 public class LottoPurchaseService {
     private final LottoFactory lottoFactory;

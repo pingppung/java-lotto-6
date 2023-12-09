@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.services;
 
 import static lotto.constants.LottoConstants.PURCHASE_PRICE;
 
