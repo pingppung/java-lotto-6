@@ -24,6 +24,18 @@ public class LottoWinningChecker {
         }
     }
 
+    public void updateRankCount() {
+        for (Lotto lotto : purchasedLottos) {
+            int matchingCount = countMatchingNumbers(lotto);
+            boolean hasBonusNumber = isBonusNumberMatched(lotto, winningLotto.getBonusNumber());
+            LottoRank rank = calculateRank(matchingCount, hasBonusNumber);
+
+            if (rank != null) {
+                rankCount.put(rank, rankCount.get(rank) + 1);
+            }
+        }
+    }
+
     private int countMatchingNumbers(Lotto purchasedLotto) {
         List<Integer> winningNumbers = winningLotto.getWinningNumbers();
         List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
