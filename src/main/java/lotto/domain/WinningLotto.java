@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.domain.validator.LottoNumberValidator;
 
 public class WinningLotto {
@@ -14,5 +15,9 @@ public class WinningLotto {
 
     private void validate() {
         LottoNumberValidator.validateDuplicateBonus(winningNumbers, bonusNumber);
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers.getNumbers();
     }
 }

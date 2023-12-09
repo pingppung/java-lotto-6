@@ -23,4 +23,10 @@ public class LottoWinningChecker {
             rankCount.put(rank, 0);
         }
     }
+
+    private int countMatchingNumbers(Lotto purchasedLotto) {
+        List<Integer> winningNumbers = winningLotto.getWinningNumbers();
+        List<Integer> purchasedNumbers = purchasedLotto.getNumbers();
+        return (int) purchasedNumbers.stream().filter(winningNumbers::contains).count();
+    }
 }
