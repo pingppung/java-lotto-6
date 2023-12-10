@@ -15,4 +15,9 @@ public class OutputView {
         System.out.println("당첨 통계\n" + "---");
         System.out.println(result);
     }
+
+    public void printEarningRate(String earningRate) {
+        String format = String.format("총 수익률은 %s%%입니다.", earningRate);
+        System.out.println(format);
+    }
 }

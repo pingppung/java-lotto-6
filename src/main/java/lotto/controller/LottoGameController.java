@@ -1,14 +1,17 @@
 package lotto.controller;
 
+import java.math.BigDecimal;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.constants.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningStatisticsResult;
+import lotto.domain.services.EarningRateCalculator;
 import lotto.domain.services.LottoWinningChecker;
 import lotto.services.LottoPurchaseService;
 import lotto.utils.InputHandler;
+import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,15 +25,16 @@ public class LottoGameController {
     }
 
     public void start() {
-        int purchaseAmount = InputHandler.retryInputOnInvalid(this::getLottoPurchaseAmount);
+        int purchaseCount = InputHandler.retryInputOnInvalid(this::getLottoPurchaseAmount);
 
-        LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(purchaseAmount);
+        LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(purchaseCount);
         List<Lotto> purchasedLottos = lottoPurchaseService.purchaseLottos();
 
         WinningLotto winningLotto = getWinningLotto();
 
         EnumMap<LottoRank, Integer> winningRanks = calculateWinningRanks(purchasedLottos, winningLotto);
         printWinningStatisticsResult(winningRanks);
+        printEarningRateResult(winningRanks, purchaseCount);
     }
 
     private int getLottoPurchaseAmount() {
@@ -54,6 +58,7 @@ public class LottoGameController {
         return inputView.getBonusNumber();
     }
 
+
     private EnumMap<LottoRank, Integer> calculateWinningRanks(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
         LottoWinningChecker lottoWinningChecker = new LottoWinningChecker(purchasedLottos, winningLotto);
         lottoWinningChecker.updateRankCount();
@@ -63,5 +68,10 @@ public class LottoGameController {
     private void printWinningStatisticsResult(EnumMap<LottoRank, Integer> winningRanks) {
         String statisticsResult = WinningStatisticsResult.generateRankResults(winningRanks);
         outputView.printWinningStatistics(statisticsResult);
+    }
+
+    private void printEarningRateResult(EnumMap<LottoRank, Integer> winningRanks, int purchaseCount) {
+        BigDecimal earningRate = EarningRateCalculator.calculate(winningRanks, purchaseCount);
+        outputView.printEarningRate(Parser.formatProfitCurrency(earningRate));
     }
 }
