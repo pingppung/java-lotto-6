@@ -5,6 +5,8 @@ import lotto.domain.Lotto;
 
 public class OutputView {
     public void printPurchaseLottos(List<Lotto> lottos) {
+        String prompt = String.format("%d개를 구매했습니다.", lottos.size());
+        System.out.println(prompt);
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
@@ -17,7 +19,7 @@ public class OutputView {
     }
 
     public void printEarningRate(String earningRate) {
-        String format = String.format("총 수익률은 %s%%입니다.", earningRate);
-        System.out.println(format);
+        String prompt = String.format("총 수익률은 %s%%입니다.", earningRate);
+        System.out.println(prompt);
     }
 }

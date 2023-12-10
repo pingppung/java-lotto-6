@@ -29,12 +29,12 @@ public class LottoGameController {
 
         LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(purchaseCount);
         List<Lotto> purchasedLottos = lottoPurchaseService.purchaseLottos();
+        outputView.printPurchaseLottos(purchasedLottos);
 
         WinningLotto winningLotto = getWinningLotto();
 
         EnumMap<LottoRank, Integer> winningRanks = calculateWinningRanks(purchasedLottos, winningLotto);
-        printWinningStatisticsResult(winningRanks);
-        printEarningRateResult(winningRanks, purchaseCount);
+        printResults(winningRanks, purchaseCount);
     }
 
     private int getLottoPurchaseAmount() {
@@ -63,6 +63,11 @@ public class LottoGameController {
         LottoWinningChecker lottoWinningChecker = new LottoWinningChecker(purchasedLottos, winningLotto);
         lottoWinningChecker.updateRankCount();
         return lottoWinningChecker.getRankCount();
+    }
+
+    private void printResults(EnumMap<LottoRank, Integer> winningRanks, int purchaseCount) {
+        printWinningStatisticsResult(winningRanks);
+        printEarningRateResult(winningRanks, purchaseCount);
     }
 
     private void printWinningStatisticsResult(EnumMap<LottoRank, Integer> winningRanks) {
