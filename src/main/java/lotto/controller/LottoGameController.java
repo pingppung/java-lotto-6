@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.List;
 import lotto.constants.LottoRank;
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningStatisticsResult;
 import lotto.domain.services.EarningRateCalculator;
@@ -28,12 +29,12 @@ public class LottoGameController {
         int purchaseCount = InputHandler.retryInputOnInvalid(this::getLottoPurchaseAmount);
 
         LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(purchaseCount);
-        List<Lotto> purchasedLottos = lottoPurchaseService.purchaseLottos();
-        outputView.printPurchaseLottos(purchasedLottos);
+        Lottos lottos = new Lottos(lottoPurchaseService.purchaseLottos());
+        outputView.printPurchaseLottos(lottos.getLottos());
 
         WinningLotto winningLotto = getWinningLotto();
 
-        EnumMap<LottoRank, Integer> winningRanks = calculateWinningRanks(purchasedLottos, winningLotto);
+        EnumMap<LottoRank, Integer> winningRanks = calculateWinningRanks(lottos.getLottos(), winningLotto);
         printResults(winningRanks, purchaseCount);
     }
 
