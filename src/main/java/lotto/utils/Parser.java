@@ -8,6 +8,7 @@ import java.util.List;
 public class Parser {
     private static final String SEPARATOR = ",";
     private static final String MONEY_CURRENCY_PATTERN = "###,###";
+    private static final String PROFIT_CURRENCY_PATTERN = "###,##0.0";
 
     public static List<Integer> parseWinnginNumbers(String input) {
         return Arrays.stream(input.split(SEPARATOR))
@@ -29,5 +30,7 @@ public class Parser {
         return formatCurrency(amount, MONEY_CURRENCY_PATTERN);
     }
 
-
+    public static String formatProfitCurrency(BigDecimal amount) {
+        return formatCurrency(amount, PROFIT_CURRENCY_PATTERN);
+    }
 }
