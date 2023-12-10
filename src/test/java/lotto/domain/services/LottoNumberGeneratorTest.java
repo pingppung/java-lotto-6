@@ -18,13 +18,13 @@ public class LottoNumberGeneratorTest {
         generatedNumbers = numberGenerator.generate();
     }
 
-    @DisplayName("생성된_로또_번호_개수_확인")
+    @DisplayName("생성된 로또번호 개수 확인")
     @Test
     void generateLottoNumbersCount() {
         assertThat(generatedNumbers).hasSize(6);
     }
 
-    @DisplayName("생성된_로또_번호_범위_확인")
+    @DisplayName("생성된 로또번호 범위 확인")
     @Test
     void generateLottoNumbersRange() {
         assertThat(generatedNumbers).allMatch(

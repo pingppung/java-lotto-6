@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 public class InputValidatorTest {
 
-    @DisplayName("입력값에_유효한_숫자만_입력된_경우")
+    @DisplayName("입력값에 유효한 숫자만 입력된 경우")
     @Test
     void validateNonNumeric() {
         String input = "123";
         assertDoesNotThrow(() -> InputValidator.validateNonNumeric(input));
     }
 
-    @DisplayName("입력값에_문자가_포함된_경우")
+    @DisplayName("입력값에 문자가 포함된 경우")
     @Test
     void invalidateNonNumeric() {
         String input = "a1b2";

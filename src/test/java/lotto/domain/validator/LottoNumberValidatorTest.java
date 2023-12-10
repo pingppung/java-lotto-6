@@ -58,7 +58,7 @@ public class LottoNumberValidatorTest {
                 .hasMessage("[ERROR] 중복된 숫자가 존재합니다.");
     }
 
-    @DisplayName("보너스번호가_로또번호와_중복되는_수가_없는_경우")
+    @DisplayName("보너스번호가 로또번호와 중복되는 수가 없는 경우")
     @Test
     void validateDuplicateBonus() {
         Lotto lotto_numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -66,7 +66,7 @@ public class LottoNumberValidatorTest {
         assertDoesNotThrow(() -> LottoNumberValidator.validateDuplicateBonus(lotto_numbers, bonus));
     }
 
-    @DisplayName("보너스번호가_로또번호와_중복되는_수가_존재하는_경우")
+    @DisplayName("보너스번호가 로또번호와 중복되는 수가 존재하는 경우")
     @Test
     void invalidateDuplicateBonus() {
         Lotto lotto_numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
