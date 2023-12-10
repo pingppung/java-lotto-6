@@ -1,8 +1,11 @@
 package lotto.controller;
 
+import java.util.EnumMap;
 import java.util.List;
+import lotto.constants.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
+import lotto.domain.services.LottoWinningChecker;
 import lotto.services.LottoPurchaseService;
 import lotto.utils.InputHandler;
 import lotto.view.InputView;
@@ -21,10 +24,10 @@ public class LottoGameController {
         int purchaseAmount = InputHandler.retryInputOnInvalid(this::getLottoPurchaseAmount);
 
         LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(purchaseAmount);
-        List<Lotto> lottos = lottoPurchaseService.purchaseLottos();
+        List<Lotto> purchasedLottos = lottoPurchaseService.purchaseLottos();
 
         WinningLotto winningLotto = getWinningLotto();
-        System.out.println(winningLotto);
+
     }
 
     private int getLottoPurchaseAmount() {
@@ -46,5 +49,11 @@ public class LottoGameController {
 
     private int getBonusNumber() {
         return inputView.getBonusNumber();
+    }
+
+    private EnumMap<LottoRank, Integer> calculateWinningRanks(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
+        LottoWinningChecker lottoWinningChecker = new LottoWinningChecker(purchasedLottos, winningLotto);
+        lottoWinningChecker.updateRankCount();
+        return lottoWinningChecker.getRankCount();
     }
 }

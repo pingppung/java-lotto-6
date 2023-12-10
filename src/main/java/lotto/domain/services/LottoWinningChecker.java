@@ -54,9 +54,13 @@ public class LottoWinningChecker {
         return null;
     }
 
-    protected void increaseCountForRank(LottoRank rank) {
+    private void increaseCountForRank(LottoRank rank) {
         if (rank != null) {
             rankCount.put(rank, rankCount.get(rank) + 1);
         }
+    }
+
+    public EnumMap<LottoRank, Integer> getRankCount() {
+        return rankCount;
     }
 }
