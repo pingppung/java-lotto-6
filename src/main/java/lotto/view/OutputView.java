@@ -1,11 +1,12 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.constants.PromptConstants;
 import lotto.domain.Lotto;
 
 public class OutputView {
     public void printPurchaseLottos(List<Lotto> lottos) {
-        String prompt = String.format("%d개를 구매했습니다.", lottos.size());
+        String prompt = String.format(PromptConstants.CONFIRM_PURCHASE_COUNT.message, lottos.size());
         System.out.println(prompt);
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
@@ -14,12 +15,14 @@ public class OutputView {
     }
 
     public void printWinningStatistics(String result) {
-        System.out.println("당첨 통계\n" + "---");
+        System.out.println(PromptConstants.WINNING_STATISTICS_HEADER.message);
+        System.out.println(PromptConstants.WINNING_STATISTICS_SECTION.message);
         System.out.println(result);
     }
 
     public void printEarningRate(String earningRate) {
-        String prompt = String.format("총 수익률은 %s%%입니다.", earningRate);
+        String prompt = String.format(PromptConstants.PROFIT_RATE_MESSAGE.message, earningRate);
         System.out.println(prompt);
     }
+
 }
