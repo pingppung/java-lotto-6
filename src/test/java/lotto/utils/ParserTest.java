@@ -25,4 +25,12 @@ public class ParserTest {
         String formattedAmount = Parser.formatMoneyCurrency(amount);
         assertEquals("2,000,000,000", formattedAmount);
     }
+
+    @DisplayName("수익률 계산 후 소수점 첫째 자리 표현 확인")
+    @Test
+    void formatProfitCurrency() {
+        BigDecimal amount = new BigDecimal("1234.567");
+        String formattedAmount = Parser.formatProfitCurrency(amount);
+        assertEquals("1,234.6", formattedAmount);
+    }
 }
