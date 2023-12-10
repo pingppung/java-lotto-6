@@ -1,11 +1,10 @@
-package lotto.domain;
+package lotto.domain.services;
 
 import static lotto.constants.LottoConstants.MAX_NUMBER;
 import static lotto.constants.LottoConstants.MIN_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.domain.services.LottoNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
