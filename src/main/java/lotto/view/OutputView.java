@@ -10,4 +10,9 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public void printWinningStatistics(String result) {
+        System.out.println("당첨 통계\n" + "---");
+        System.out.println(result);
+    }
 }

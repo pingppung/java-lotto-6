@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.constants.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningStatisticsResult;
 import lotto.domain.services.LottoWinningChecker;
 import lotto.services.LottoPurchaseService;
 import lotto.utils.InputHandler;
@@ -28,6 +29,8 @@ public class LottoGameController {
 
         WinningLotto winningLotto = getWinningLotto();
 
+        EnumMap<LottoRank, Integer> winningRanks = calculateWinningRanks(purchasedLottos, winningLotto);
+        printWinningStatisticsResult(winningRanks);
     }
 
     private int getLottoPurchaseAmount() {
@@ -55,5 +58,10 @@ public class LottoGameController {
         LottoWinningChecker lottoWinningChecker = new LottoWinningChecker(purchasedLottos, winningLotto);
         lottoWinningChecker.updateRankCount();
         return lottoWinningChecker.getRankCount();
+    }
+
+    private void printWinningStatisticsResult(EnumMap<LottoRank, Integer> winningRanks) {
+        String statisticsResult = WinningStatisticsResult.generateRankResults(winningRanks);
+        outputView.printWinningStatistics(statisticsResult);
     }
 }
